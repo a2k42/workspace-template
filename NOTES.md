@@ -285,3 +285,11 @@ import { VButton } from "vue-ui";
 ```
 
 We have done anything to configure Nuxt's auto-importing, but this should work for now.
+
+As a final step, rename your nuxt app in `package.json` to something like `nuxt-app`.
+
+Now, from the root level directory, we can take advantage of pnpm workspaces again:
+
+```bash
+pnpm --filter nuxt-app dev
+```
