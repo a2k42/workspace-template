@@ -2,4 +2,5 @@
 ---
 packages:
   - libraries/*
-  - projects/*
+  - projects/**
+  - services/*
