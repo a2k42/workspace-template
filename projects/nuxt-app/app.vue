@@ -1,4 +1,4 @@
-<script setup lant="ts">
+<script setup lang="ts">
 import { VButton } from "vue-ui";
 </script>
 
