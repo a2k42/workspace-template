@@ -234,3 +234,54 @@ We've externalised `vue` in our vite build, and here we declare it as a peer dep
 ## Nuxt App
 
 Our nuxt app will use the library that we have just made.
+
+- [x] Create from Nuxt Template
+
+> :warning: Creating from a template seems to cause  pnpm to be restricted to an old version. Remove the entry in the `package.json`.
+
+```bash
+pnpm dlx nuxi@latest init -t gh:a2k42/nuxt-pinia-template#one-page --packageManager pnpm --shell nuxt-app
+```
+
+Don't initialise a git repo unless you want to have submodules in your monorepo workspace.
+
+Check that the project runs:
+
+```bash
+pnpm dev
+```
+
+### Add Library as Dependency
+
+This is where using [pnpm workspaces](https://pnpm.io/workspaces) really makes our life easier
+
+```bash
+pnpm add --workspace vue-ui
+```
+
+Add the `vue-ui` styles to `nuxt.config.ts`
+
+```ts
+export default defineNuxtConfig({
+    // ...
+    css: ["~/assets/css/main.css", "vue-ui/style.css"],
+)};
+```
+
+Open up `App.vue` and add the `<v-button>`:
+
+```html
+<script setup lant="ts">
+import { VButton } from "vue-ui";
+</script>
+
+<template>
+    <div>
+        <h1>Nuxt Pinia Template</h1>
+        <p>A simple starting template</p>
+        <v-button>Library Import</v-button>
+    </div>
+</template>
+```
+
+We have done anything to configure Nuxt's auto-importing, but this should work for now.

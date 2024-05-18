@@ -1,0 +1,24 @@
+/* Non-colour style variables */
+:root {
+    --font-default: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/named-color */
+/* Colour varibles */
+:root {
+    --deep-black: #050505;
+    --charcoal: #222222;
+}
+
+/* Semantic colours */
+:root {
+    --color-background: moccasin;
+    --color-text: var(--deep-black);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: var(--deep-black);
+        --color-text: ghostwhite;
+    }
+}

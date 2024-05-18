@@ -1,0 +1,9 @@
+@import "reset.css";
+@import "theme.css";
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-default);
+    height: 100%;
+}
