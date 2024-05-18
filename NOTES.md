@@ -28,7 +28,7 @@ git init --bare workspace.git && cd workspace.git
 git worktree add --orphan -b main ../workspace.main && cd ../workspace.main
 ```
 
-Add a `.gitignore` file, `README.md`
+Add a `.gitignore` file, `README.md` and consider making your project open source with an MIT `LICENSE`.
 
 ```ini
 # .gitignore
@@ -104,9 +104,28 @@ dist/
 
 - [ ] Add test component
 
+We'll keep this simple, but want to add some styling. When built as a library, a separate `style.css` stylesheet is created and we'll need to make sure our configurate exports that correctly.
+
+```html
+// components/VButton.vue
+<template>
+    <button>
+        <slot />
+    </button>
+</template>
+
+<style scoped>
+button {
+    background: linear-gradient(70deg, #999, #CCC);
+    cursor: pointer;
+    padding: 1em;
+}
+</style>
+```
+
 ### Configure Vite Build
 
-We leave the default `main.ts` and `App.vue` in order to test are components. We still need some way to define what will be exported:
+We leave the default `main.ts` and `App.vue` in order to test our components. We still need some way to define what will be exported:
 
 1. Add an `src/index.ts` file
 
@@ -146,7 +165,7 @@ dist
 
 ### Add TypeScript Support
 
-The default `create vue` project has 3 `tsconfig*.json` files. To keep the library configuration separate add a `tsconfig.lib.json` and include it in `tsconfig.json`
+The default `create vue` project has 3 `tsconfig*.json` files. To keep the library configuration separate, add a `tsconfig.lib.json` and include it in `tsconfig.json`
 
 ```json
 // ...
@@ -158,7 +177,7 @@ The default `create vue` project has 3 `tsconfig*.json` files. To keep the libra
     ]
 ```
 
-Then the `tsconfig.lib.json` will tell our build to output typescript declarations for out components, but not to transpile `.js` files.
+Then the `tsconfig.lib.json` will tell our build to output typescript declarations for the components, but not to transpile `.js` files.
 
 ```json
 {
@@ -182,11 +201,35 @@ dist
 └── vue-ui.js
 ```
 
----
+### Configure NPM Package
 
-- [x] Configure vite build
-- [ ] Add typescript options for typing
-- [ ] Configure package to export library
+We'll now add some items to the `package.json`.
+
+The entry point for a program used to be declared with something like `"main": "src/index.js"`. The ES6 modules equivalent is `"module"`. When using TypeScript, you'd also have to remember to point at the transpiled `.js` file, in our case its clear were trying to export a library and want to use the `dist` folder.
+
+```json
+{
+    "module": "dist/vue-ui.js",
+    "exports": {
+        ".": {
+            "import": "./dist/vue-ui.js"
+        },
+        "./style.css": "./dist/style.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "types": "dist/types",
+    "peerDependencies": {
+        "vue": "^3.4.0"
+    },
+}
+```
+
+We've externalised `vue` in our vite build, and here we declare it as a peer dependency???
+
+- [ ] TODO - verify if this is correct.
+- [ ] Add some script logic to out test component to ensure this also works
 
 ## Nuxt App
 

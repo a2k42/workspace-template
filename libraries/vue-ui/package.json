@@ -3,6 +3,17 @@
     "version": "0.0.0",
     "private": true,
     "type": "module",
+    "module": "dist/vue-ui.js",
+    "exports": {
+        ".": {
+            "import": "./dist/vue-ui.js"
+        },
+        "./style.css": "./dist/style.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "types": "dist/types",
     "scripts": {
         "dev": "vite",
         "build": "run-p type-check \"build-only {@}\" --",
@@ -12,6 +23,9 @@
     },
     "dependencies": {
         "vue": "^3.4.21"
+    },
+    "peerDependencies": {
+        "vue": "^3.4.0"
     },
     "devDependencies": {
         "@tsconfig/node20": "^20.1.4",
