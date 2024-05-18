@@ -271,7 +271,7 @@ export default defineNuxtConfig({
 Open up `App.vue` and add the `<v-button>`:
 
 ```html
-<script setup lant="ts">
+<script setup lang="ts">
 import { VButton } from "vue-ui";
 </script>
 
@@ -284,7 +284,7 @@ import { VButton } from "vue-ui";
 </template>
 ```
 
-We have done anything to configure Nuxt's auto-importing, but this should work for now.
+We haven't done anything to configure Nuxt's auto-importing, but this should work for now.
 
 As a final step, rename your nuxt app in `package.json` to something like `nuxt-app`.
 
