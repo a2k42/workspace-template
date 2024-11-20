@@ -4,6 +4,10 @@ A [pnpm workspaces](https://pnpm.io/workspaces) monorepo scaffold with a Vue Com
 
 Read the [Notes](NOTES.md) for a walkthrough of how it was setup.
 
+### Todo
+
+- [ ] Containerise applications with `docker compose`
+
 ## Copy the Template
 
 One way, not necessarily the best way, to create a new repository from a template is:
